@@ -1,13 +1,15 @@
 import { useFonts } from "expo-font";
 import {
-  Button,
   SafeAreaView,
   StyleSheet,
   Text,
   View,
   Image,
+  Pressable,
 } from "react-native";
 import logo from "./assets/images/logo.png";
+
+const corPrimaria = "#5451a6";
 
 const App = () => {
   const [fonteCarregada] = useFonts({
@@ -27,13 +29,22 @@ const App = () => {
       </View>
 
       <View style={estilos.viewBotoes}>
-        <Button title="Buscar Filmes" />
-        <Button title="Favoritos" />
+        <Pressable style={estilos.botaoInicial}>
+          <Text style={estilos.textoBotao}>Buscar Filmes</Text>
+        </Pressable>
+
+        <Pressable style={estilos.botaoInicial}>
+          <Text style={estilos.textoBotao}>Favoritos</Text>
+        </Pressable>
       </View>
 
       <View style={estilos.viewRodape}>
-        <Button title="Privacidade" />
-        <Button title="Sobre" />
+        <Pressable>
+          <Text style={estilos.textoRodape}>Privacidade</Text>
+        </Pressable>
+        <Pressable>
+          <Text style={estilos.textoRodape}>Sobre</Text>
+        </Pressable>
       </View>
     </SafeAreaView>
   );
@@ -57,7 +68,7 @@ const estilos = StyleSheet.create({
   tituloApp: {
     fontSize: 32,
     fontFamily: "monoton",
-    color: "#5154a6",
+    color: corPrimaria,
     /*fontWeight: "bold",*/
   },
   viewLogo: {
@@ -74,11 +85,25 @@ const estilos = StyleSheet.create({
     alignItems: "flex-start",
     width: "80%",
   },
+  textoBotao: {
+    color: "white",
+  },
+  botaoInicial: {
+    borderStyle: "solid",
+    borderWidth: 2,
+    padding: 16,
+    backgroundColor: corPrimaria,
+  },
+  textoRodape: {
+    color: "white",
+    padding: 25,
+  },
   viewRodape: {
-    flex: 1,
+    flex: 0.5,
+    backgroundColor: corPrimaria,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    width: "80%",
+    width: "100%",
   },
 });
