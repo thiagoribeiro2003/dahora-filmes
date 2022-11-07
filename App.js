@@ -25,25 +25,32 @@ export default App;
 
 const estilos = StyleSheet.create({
   container: {
-    backgroundColor: "yellow",
     flex: 1,
+    backgroundColor: "yellow",
     alignItems: "center",
     justifyContent: "center",
   },
   viewLogo: {
+    flex: 3,
     width: "80%",
     backgroundColor: "green",
     textAlign: "center",
+    justifyContent: "flex-end",
+    alignItems: "center",
   },
   viewBotoes: {
+    flex: 2,
     flexDirection: "row",
     justifyContent: "space-evenly",
+    alignItems: "flex-start",
     backgroundColor: "orange",
     width: "80%",
   },
   viewRodape: {
+    flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
     backgroundColor: "red",
     width: "80%",
   },
