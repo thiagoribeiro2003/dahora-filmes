@@ -8,6 +8,7 @@ import {
   Pressable,
 } from "react-native";
 import logo from "./assets/images/logo.png";
+import { Ionicons } from "@expo/vector-icons";
 
 const corPrimaria = "#5451a6";
 
@@ -30,20 +31,28 @@ const App = () => {
 
       <View style={estilos.viewBotoes}>
         <Pressable style={estilos.botaoInicial}>
-          <Text style={estilos.textoBotao}>Buscar Filmes</Text>
+          <Text style={estilos.textoBotao}>
+            <Ionicons name="search" size={16} color="#cccc" /> Buscar Filmes
+          </Text>
         </Pressable>
 
         <Pressable style={estilos.botaoInicial}>
-          <Text style={estilos.textoBotao}>Favoritos</Text>
+          <Text style={estilos.textoBotao}>
+            <Ionicons name="star" size={16} color="gold" /> Favoritos
+          </Text>
         </Pressable>
       </View>
 
       <View style={estilos.viewRodape}>
         <Pressable>
-          <Text style={estilos.textoRodape}>Privacidade</Text>
+          <Text style={estilos.textoRodape}>
+            <Ionicons name="lock-closed" size={20} color="#cccc" /> Privacidade
+          </Text>
         </Pressable>
         <Pressable>
-          <Text style={estilos.textoRodape}>Sobre</Text>
+          <Text style={estilos.textoRodape}>
+            <Ionicons name="information-circle" size={20} color="#cccc" /> Sobre
+          </Text>
         </Pressable>
       </View>
     </SafeAreaView>
@@ -62,8 +71,8 @@ const estilos = StyleSheet.create({
   logo: {
     /* width: 128,
     height: 128, */
-    width: 186,
-    height: 186,
+    width: 170,
+    height: 170,
   },
   tituloApp: {
     fontSize: 32,
