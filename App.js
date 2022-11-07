@@ -51,8 +51,8 @@ const estilos = StyleSheet.create({
   logo: {
     /* width: 128,
     height: 128, */
-    width: 256,
-    height: 256,
+    width: 186,
+    height: 186,
   },
   tituloApp: {
     fontSize: 32,
