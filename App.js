@@ -9,7 +9,7 @@ const App = () => {
   return (
     <>
       <StatusBar barStyle="default" />
-      <Privacidade />
+      <Home />
     </>
   );
 };
