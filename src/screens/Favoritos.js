@@ -1,14 +1,14 @@
 import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-const FormBusca = () => {
+const Favoritos = () => {
   return (
     <SafeAreaView>
-      <Text>FormBusca</Text>
+      <Text>Favoritos</Text>
     </SafeAreaView>
   );
 };
 
-export default FormBusca;
+export default Favoritos;
 
 const styles = StyleSheet.create({});
