@@ -13,7 +13,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 const corPrimaria = "#5451a6";
 
-const Home = () => {
+const Home = ({ navigation }) => {
   const [fonteCarregada] = useFonts({
     monoton: require("../../assets/fonts/Monoton-Regular.ttf"),
   });
@@ -31,13 +31,23 @@ const Home = () => {
       </View>
 
       <View style={estilos.viewBotoes}>
-        <Pressable style={estilos.botaoInicial}>
+        <Pressable
+          style={estilos.botaoInicial}
+          onPress={() => {
+            navigation.navigate("FormBusca");
+          }}
+        >
           <Text style={estilos.textoBotao}>
             <Ionicons name="search" size={16} color="#cccc" /> Buscar Filmes
           </Text>
         </Pressable>
 
-        <Pressable style={estilos.botaoInicial}>
+        <Pressable
+          style={estilos.botaoInicial}
+          onPress={() => {
+            navigation.navigate("Favoritos");
+          }}
+        >
           <Text style={estilos.textoBotao}>
             <Ionicons name="star" size={16} color="gold" /> Favoritos
           </Text>
@@ -45,12 +55,23 @@ const Home = () => {
       </View>
 
       <View style={estilos.viewRodape}>
-        <Pressable>
+        <Pressable
+          style={estilos.botaoRodape}
+          onPress={() => {
+            navigation.navigate("Privacidade");
+          }}
+        >
           <Text style={estilos.textoRodape}>
             <Ionicons name="lock-closed" size={20} color="#cccc" /> Privacidade
           </Text>
         </Pressable>
-        <Pressable>
+
+        <Pressable
+          style={estilos.botaoRodape}
+          onPress={() => {
+            navigation.navigate("Sobre");
+          }}
+        >
           <Text style={estilos.textoRodape}>
             <Ionicons name="information-circle" size={20} color="#cccc" /> Sobre
           </Text>
@@ -70,10 +91,10 @@ const estilos = StyleSheet.create({
     justifyContent: "center",
   },
   logo: {
-    /* width: 128,
-      height: 128, */
-    width: 170,
-    height: 170,
+    width: 128,
+    height: 128,
+    /* width: 150,
+    height: 150,*/
   },
   tituloApp: {
     fontSize: 32,
@@ -109,7 +130,7 @@ const estilos = StyleSheet.create({
     padding: 25,
   },
   viewRodape: {
-    flex: 0.5,
+    flex: 0.6,
     backgroundColor: corPrimaria,
     flexDirection: "row",
     justifyContent: "space-between",
