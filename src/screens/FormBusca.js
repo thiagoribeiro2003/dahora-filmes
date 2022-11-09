@@ -5,13 +5,30 @@ import {
   Text,
   View,
   TextInput,
+  Alert,
 } from "react-native";
-import React from "react";
+import { useState } from "react";
 import { MaterialIcons } from "@expo/vector-icons";
 
 const FormBusca = () => {
+  /* state para o filme que será buscado */
+  const [filme, setFilme] = useState("");
+
+  const capturarDigitacao = (valor) => {
+    setFilme(valor);
+  };
+
+  const inputTexto = () => {
+    if (!filme) {
+      return (
+        Alert.alert("Ops!", "Você deve digitar o nome de um filme"),
+        [{ filme: "OK" }]
+      );
+    }
+    Alert.alert("Você procurou por:", filme), [{ filme: "OK" }];
+  };
   return (
-    <SafeAreaView>
+    <SafeAreaView style={estilos}>
       <Text style={estilos.textoBusca1}>Aventura? Terror? Suspense? Ação?</Text>
       <Text style={estilos.textoBusca2}>
         Localize um filme que você viu ou gostaria de ver!
@@ -24,11 +41,15 @@ const FormBusca = () => {
           size={50}
           color="black"
         />
-        <TextInput style={estilos.inputBusca} placeholder="Filme..." />
+        <TextInput
+          style={estilos.inputBusca}
+          onChangeText={capturarDigitacao}
+          placeholder="Filme..."
+        />
       </View>
 
       <View style={estilos.botaoBusca}>
-        <Button title="Procurar" color="#5451a6" />
+        <Button title="Procurar" color="#5451a6" onPress={inputTexto} />
       </View>
     </SafeAreaView>
   );
