@@ -1,12 +1,10 @@
-import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { Button, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import React from "react";
 
 const FormBusca = () => {
   return (
     <SafeAreaView>
-      <Text style={estilos.textoBusca1}>
-        Aventura? Terror? Suspense? Ação?{" "}
-      </Text>
+      <Text style={estilos.textoBusca1}>Aventura? Terror? Suspense? Ação?</Text>
       <Text style={estilos.textoBusca2}>
         Localize um filme que você viu ou gostaria de ver!
       </Text>
