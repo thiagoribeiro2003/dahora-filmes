@@ -8,6 +8,8 @@ const FormBusca = () => {
       <Text style={estilos.textoBusca2}>
         Localize um filme que você viu ou gostaria de ver!
       </Text>
+
+      <View></View>
     </SafeAreaView>
   );
 };
