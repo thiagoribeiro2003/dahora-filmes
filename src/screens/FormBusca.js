@@ -10,7 +10,7 @@ import {
 import { useState } from "react";
 import { MaterialIcons } from "@expo/vector-icons";
 
-const FormBusca = () => {
+const FormBusca = ({ navigation }) => {
   /* state para o filme que será buscado */
   const [filme, setFilme] = useState("");
 
@@ -20,15 +20,18 @@ const FormBusca = () => {
 
   const inputTexto = () => {
     if (!filme) {
-      return (
-        Alert.alert("Ops!", "Você deve digitar o nome de um filme"),
-        [{ filme: "OK" }]
-      );
+      return Alert.alert("Ops!", "Você deve digitar o nome de um filme");
     }
-    Alert.alert("Você procurou por:", filme), [{ filme: "OK" }];
+
+    /* Usamos a prop navigation (que vem do React Navigation 
+      programado no App) para acessar uma nova tela (no caso,
+      Resultados). Para esta tela, passamos como objeto os dados
+      digitados no formulário (neste caso, filme). */
+    navigation.navigate("Resultados", { filme });
   };
+
   return (
-    <SafeAreaView style={estilos}>
+    <SafeAreaView>
       <Text style={estilos.textoBusca1}>Aventura? Terror? Suspense? Ação?</Text>
       <Text style={estilos.textoBusca2}>
         Localize um filme que você viu ou gostaria de ver!

@@ -6,7 +6,7 @@ const Privacidade = () => {
     <SafeAreaView style={estilos.container}>
       <ScrollView>
         <Text style={estilos.titulo}>
-          Política de Privacidade para o app Dá Hora Filmes
+          Política de Privacidade para o app Dáhora Filmes
         </Text>
 
         <Text style={estilos.texto}>
