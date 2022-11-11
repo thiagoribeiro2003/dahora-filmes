@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Alert, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import api from "../services/api";
+import apiKey from "../../apiKey";
 
 const Resultados = ({ route }) => {
   /* Usamos a proproute (do React Navigation) para
@@ -19,9 +20,13 @@ const Resultados = ({ route }) => {
      a consulta à API baseado no quefoi digitado. */
     async function buscarFilmes() {
       try {
+        /* Aguardamos a resposta da consulta get ao endpoint 
+        "/search/movie da api. Observe que este endpoint precisa
+         de parâmetros para a execução correta em consulta. Estes parâmetros
+         Devem ter o mesmo nome indicado na documentação do endpoint/API */
         const resposta = await api.get("/search/movie", {
           params: {
-            api_key: "0bf24795fa0f8c3e3cef5a15e6e002a2",
+            api_key: apiKey,
             language: "pt-BR",
             query: filme,
             include_adult: false,
