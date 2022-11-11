@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Alert, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import api from "../services/api";
 
@@ -23,7 +23,7 @@ const Resultados = ({ route }) => {
           },
         });
 
-        setResultados(resposta.data);
+        setResultados(resposta.data.results);
       } catch (error) {
         console.log("Deu ruim na busca da API: " + error.message);
       }
@@ -36,6 +36,11 @@ const Resultados = ({ route }) => {
   return (
     <SafeAreaView style={estilos.container}>
       <Text>Você buscou por: {filme}</Text>
+      <View style={estilos.viewFilmes}>
+        {resultados.map((resultado) => {
+          return <Text key={resultado.id}>{resultado.title}</Text>;
+        })}
+      </View>
     </SafeAreaView>
   );
 };
