@@ -5,25 +5,14 @@ import api from "../services/api";
 import apiKey from "../../apiKey";
 
 const Resultados = ({ route }) => {
-  /* Usamos a proproute (do React Navigation) para
-  acessar os parâmetros desta rota de navegação e extrair
-  os dados (neste casom filme) enviados para esta tela Resultados. */
   const { filme } = route.params;
 
   const [resultados, setResultados] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  /* useEffect: hook do React que executa operações no momento 
-  em que o componente (neste caso, Resultado) é renderizado. */
   useEffect(() => {
-    /* Assim que entrarmos em Resultado, é executada a função
-     async buscarFilmes que por sua vez através do axios executa 
-     a consulta à API baseado no quefoi digitado. */
     async function buscarFilmes() {
       try {
-        /* Aguardamos a resposta da consulta get ao endpoint 
-        "/search/movie da api. Observe que este endpoint precisa
-         de parâmetros para a execução correta em consulta. Estes parâmetros
-         Devem ter o mesmo nome indicado na documentação do endpoint/API */
         const resposta = await api.get("/search/movie", {
           params: {
             api_key: apiKey,
@@ -34,6 +23,12 @@ const Resultados = ({ route }) => {
         });
 
         setResultados(resposta.data.results);
+
+        /* Simulando um tempo de carregamento lento
+        usando temporizador setInterval (uma função javascript*/
+        setInterval(() => {
+          setLoading(false);
+        }, 3000);
       } catch (error) {
         console.log("Deu ruim na busca da API: " + error.message);
       }
@@ -41,7 +36,7 @@ const Resultados = ({ route }) => {
     buscarFilmes();
   }, []);
 
-  console.log(resultados);
+  if (loading) return <Text>Carregando filmes...</Text>;
 
   return (
     <SafeAreaView style={estilos.container}>
