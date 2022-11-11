@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import api from "../services/api";
 import apiKey from "../../apiKey";
@@ -43,25 +43,17 @@ const Resultados = ({ route }) => {
     <SafeAreaView style={estilos.container}>
       <Text>Você buscou por: {filme}</Text>
 
-      {/* Sintaxe de if evaluate usando && 
-       Se loading for TRUE, renderize <Loading /> */}
       {loading && <Loading />}
 
       <View style={estilos.viewFilmes}>
-        {!loading &&
-          resultados.map((resultado) => {
-            return (
-              <View key={resultado.id}>
-                <Image
-                  style={estilos.imagem}
-                  source={{
-                    uri: `https://image.tmdb.org/t/p/original/${resultado.poster_path}`,
-                  }}
-                />
-                <Text> {resultado.title} </Text>
-              </View>
-            );
-          })}
+        {!loading && (
+          <FlatList
+            data={resultados}
+            renderItem={({ item }) => {
+              return <Text>{item.title}</Text>;
+            }}
+          />
+        )}
       </View>
     </SafeAreaView>
   );
