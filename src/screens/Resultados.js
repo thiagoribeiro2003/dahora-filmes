@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
-import { StyleSheet, Text, View, Image, FlatList } from "react-native";
+import { StyleSheet, Text, View, FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import api from "../services/api";
 import apiKey from "../../apiKey";
 import Loading from "../components/Loading";
+import CardFilme from "../components/CardFilme";
+import ItemSeparador from "../components/ItemSeparador";
+import ItemVazio from "../components/ItemVazio";
 
 const Resultados = ({ route }) => {
   const { filme } = route.params;
@@ -41,17 +44,26 @@ const Resultados = ({ route }) => {
 
   return (
     <SafeAreaView style={estilos.container}>
-      <Text>Você buscou por: {filme}</Text>
+      <Text>
+        Você buscou por: <Text style={estilos.teste}>{filme}</Text>
+      </Text>
 
       {loading && <Loading />}
 
       <View style={estilos.viewFilmes}>
         {!loading && (
           <FlatList
+            ItemSeparatorComponent={ItemSeparador}
+            ListEmptyComponent={ItemVazio}
             data={resultados}
             renderItem={({ item }) => {
-              return <Text>{item.title}</Text>;
+              return (
+                <View>
+                  <CardFilme filme={item} />
+                </View>
+              );
             }}
+            keyExtractor={(item) => item.id}
           />
         )}
       </View>
@@ -66,7 +78,7 @@ const estilos = StyleSheet.create({
     flex: 1,
     padding: 16,
   },
-  imagem: {
-    height: 125,
+  teste: {
+    fontSize: 15,
   },
 });
