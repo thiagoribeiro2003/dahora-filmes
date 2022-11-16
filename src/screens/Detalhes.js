@@ -21,7 +21,8 @@ const Detalhes = ({ route }) => {
         <ImageBackground
           style={estilos.imagem}
           source={{
-            uri: `https://image.tmdb.org/t/p/original/${filme.backdrop_path}`,
+            uri: `https://image.tmdb.org/t/p/original/${filme.backdrop_path}`, // ||
+            //`http://via.placeholder.com/300`,
           }}
         >
           <Text style={estilos.titulo}>{filme.title}</Text>
