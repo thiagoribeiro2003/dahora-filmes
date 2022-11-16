@@ -53,7 +53,7 @@ const Resultados = ({ route }) => {
       <View style={estilos.viewFilmes}>
         {!loading && (
           <FlatList
-            ItemSeparatorComponent={ItemSeparador}
+            showsVerticalScrollIndicator={false}
             ListEmptyComponent={ItemVazio}
             data={resultados}
             renderItem={({ item }) => {
