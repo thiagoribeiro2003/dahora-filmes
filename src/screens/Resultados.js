@@ -44,7 +44,7 @@ const Resultados = ({ route }) => {
 
   return (
     <SafeAreaView style={estilos.container}>
-      <Text>
+      <Text style={estilos.nomeBusca}>
         Você buscou por: <Text style={estilos.teste}>{filme}</Text>
       </Text>
 
@@ -80,5 +80,9 @@ const estilos = StyleSheet.create({
   },
   teste: {
     fontSize: 15,
+    fontWeight: "bold",
+  },
+  nomeBusca: {
+    marginBottom: 20,
   },
 });
