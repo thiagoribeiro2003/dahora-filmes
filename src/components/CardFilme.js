@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, Image, Pressable, Alert } from "react-native";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import fotoAlternativa from "../../assets/images/foto-alternativa.jpg";
 
 const CardFilme = ({ filme }) => {
   /* Acessar recursos do React Navigation (sem props) */
@@ -18,9 +19,13 @@ const CardFilme = ({ filme }) => {
       <Image
         style={estilos.imagem}
         resizeMode="cover"
-        source={{
-          uri: `https://image.tmdb.org/t/p/original/${poster_path}`,
-        }}
+        source={
+          poster_path
+            ? {
+                uri: `https://image.tmdb.org/t/p/original/${poster_path}`,
+              }
+            : fotoAlternativa
+        }
       />
       <View style={estilos.corpo}>
         <Text style={estilos.titulo}> {title} </Text>

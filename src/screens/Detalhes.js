@@ -7,6 +7,7 @@ import {
 } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
+import fotoAlternativa from "../../assets/images/foto-alternativa.jpg";
 
 /* Prop de route para acesso dos dados trafegados
 entre a nagegação entre as telas/rotas */
@@ -20,10 +21,13 @@ const Detalhes = ({ route }) => {
       <View style={estilos.container}>
         <ImageBackground
           style={estilos.imagem}
-          source={{
-            uri: `https://image.tmdb.org/t/p/original/${filme.backdrop_path}`, // ||
-            //`http://via.placeholder.com/300`,
-          }}
+          source={
+            filme.backdrop_path
+              ? {
+                  uri: `https://image.tmdb.org/t/p/original/${filme.backdrop_path}`,
+                }
+              : fotoAlternativa
+          }
         >
           <Text style={estilos.titulo}>{filme.title}</Text>
         </ImageBackground>
