@@ -1,3 +1,4 @@
+import { formataData } from "../utils/funcoes";
 import {
   ImageBackground,
   ScrollView,
@@ -35,7 +36,8 @@ const Detalhes = ({ route }) => {
         <View style={estilos.conteudo}>
           <ScrollView showsVerticalScrollIndicator={false}>
             <Text>
-              Avaliação: {filme.vote_average} | Lançamento: {filme.release_date}
+              Avaliação: {filme.vote_average} | Lançamento:{" "}
+              {formataData(filme.release_date)}
             </Text>
             <Text style={estilos.descricao}>
               {filme.overview || "Sem descrição"}
