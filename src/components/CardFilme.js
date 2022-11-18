@@ -1,6 +1,14 @@
 // importa o AsyncStorage do expo, Não use do react-native padrão
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { StyleSheet, Text, View, Image, Pressable, Alert } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Pressable,
+  Alert,
+  Vibration,
+} from "react-native";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
@@ -43,6 +51,7 @@ const CardFilme = ({ filme }) => {
       filme do card(que está na tela)*/
       if (listaDeFilmes[filmeExistente].id == filme.id) {
         Alert.alert("Ops!", "Você já salvou este filme!");
+        Vibration.vibrate();
         return;
       }
     }
