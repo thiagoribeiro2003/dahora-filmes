@@ -4,6 +4,7 @@ import {
   Button,
   Pressable,
   SafeAreaView,
+  ScrollView,
   StyleSheet,
   Text,
   View,
@@ -30,7 +31,7 @@ const Favoritos = () => {
   }, []);
 
   const excluirFavoritos = async () => {
-    /* Usamos removeintem para apahar somente os dados do @favoritos do nosso App*/
+    /* Usamos removeintem para apahar somente os dados do @favoritos do nosso*/
     await AsyncStorage.removeItem("@favoritos");
 
     /* Atualizar o render do componente (removendo da tela os favoritos)*/
@@ -41,23 +42,30 @@ const Favoritos = () => {
   return (
     <SafeAreaView style={estilos.safeContainer}>
       <View style={estilos.container}>
-        <Text>Quantidade: {listaFavoritos.length} </Text>
-        <Pressable style={estilos.botaoExcluirTudo} onPress={excluirFavoritos}>
-          <Text style={estilos.textoExcluir}>
-            <Ionicons name="trash-outline" size={10} /> excluir Favoritos
-          </Text>
-        </Pressable>
+        <View style={estilos.cabecalho}>
+          <Text>Quantidade: {listaFavoritos.length}</Text>
+          <Pressable
+            style={estilos.botaoExcluirTudo}
+            onPress={excluirFavoritos}
+          >
+            <Text style={estilos.textoExcluirTudo}>
+              <Ionicons name="trash-outline" size={16} /> Excluir Tudo
+            </Text>
+          </Pressable>
+        </View>
         <View>
-          {listaFavoritos.map((filmeFavorito) => {
-            return (
-              <Pressable key={filmeFavorito.id} style={estilos.itemFilme}>
-                <Text>{filmeFavorito.title}</Text>
-                <Pressable style={estilos.botaoExcluir}>
-                  <Ionicons name="trash" size={24} />
+          <ScrollView>
+            {listaFavoritos.map((filmeFavorito) => {
+              return (
+                <Pressable key={filmeFavorito.id} style={estilos.itemFilme}>
+                  <Text style={estilos.titulo}>{filmeFavorito.title}</Text>
+                  <Pressable style={estilos.botaoExcluir}>
+                    <Ionicons name="trash" size={24} color="white" />
+                  </Pressable>
                 </Pressable>
-              </Pressable>
-            );
-          })}
+              );
+            })}
+          </ScrollView>
         </View>
       </View>
     </SafeAreaView>
@@ -85,8 +93,27 @@ const estilos = StyleSheet.create({
     alignItems: "center",
   },
   botaoExcluir: {
-    backgroundColor: "red",
+    backgroundColor: "#c0392B",
     padding: 12,
     borderRadius: 4,
+  },
+  cabecalho: {
+    marginVertical: 8,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  botaoExcluirTudo: {
+    borderWidth: 1,
+    borderColor: "#c0392B",
+    padding: 8,
+    borderRadius: 4,
+  },
+  textoExcluirTudo: {
+    color: "red",
+  },
+  titulo: {
+    flex: 1,
+    fontSize: 14,
   },
 });
