@@ -39,6 +39,32 @@ const Favoritos = () => {
     Alert.alert("Favoritos", "Favoritos excluídos!");
   };
 
+  const excluirUmfavorito = async (indice) => {
+    // Alert.alert(`Excluir filme no índice: ${indice}`);
+
+    /* Etapas para exclusão do filme escolhido */
+
+    // 1) Conhecendo o índice, remover o elemento (filme do array listaFavoritos)
+
+    /* splice: indicamos o indice de referência (na prática, o índice do filme
+      que queremos remocer e, a partir deste indice, a quantidade de elementos
+      que queremos remover. Como aqui queremos apagar somente o próprio filme 
+      escolhido, passamos 1) */
+
+    listaFavoritos.splice(indice, 1);
+
+    // 2) Atualizar o storage com a lista atualizada (ou seja, sem o filme)
+    await AsyncStorage.setItem("@favoritos", JSON.stringify(listaFavoritos));
+
+    // 3) Recarregar do storage a nova lista de favoritos
+    /* Obs.: é necessário transformar em array/objetos antes de manipular 
+    na aplicação*/
+    const listaDeFilmes = JSON.parse(await AsyncStorage.getItem("@favoritos"));
+
+    // 4) Atualizar o state para um novo render na tela com a lista de favoritos
+    setListaFavoritos(listaDeFilmes);
+  };
+
   return (
     <SafeAreaView style={estilos.safeContainer}>
       <View style={estilos.container}>
@@ -55,11 +81,16 @@ const Favoritos = () => {
         </View>
         <View>
           <ScrollView>
-            {listaFavoritos.map((filmeFavorito) => {
+            {listaFavoritos.map((filmeFavorito, indice) => {
               return (
                 <Pressable key={filmeFavorito.id} style={estilos.itemFilme}>
                   <Text style={estilos.titulo}>{filmeFavorito.title}</Text>
-                  <Pressable style={estilos.botaoExcluir}>
+                  <Pressable
+                    style={estilos.botaoExcluir}
+                    //onPress={excluirUmfavorito}
+                    onPress={() => excluirUmfavorito(indice)}
+                    //onPress={excluirUmfavorito.bind(this, indice)}
+                  >
                     <Ionicons name="trash" size={24} color="white" />
                   </Pressable>
                 </Pressable>
@@ -81,12 +112,13 @@ const estilos = StyleSheet.create({
   container: {
     flex: 1,
     padding: 8,
+    backgroundColor: "white",
   },
   itemFilme: {
     padding: 8,
     flexDirection: "row",
     justifyContent: "space-between",
-    backgroundColor: "#ccc",
+    backgroundColor: "#f4f4f4",
     marginVertical: 8,
     borderRadius: 4,
     alignItems: "center",
