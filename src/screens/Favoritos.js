@@ -1,5 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
+  Alert,
   Button,
   Pressable,
   SafeAreaView,
@@ -29,22 +30,30 @@ const Favoritos = () => {
   }, []);
 
   const excluirFavoritos = async () => {
+    /* Usamos removeintem para apahar somente os dados do @favoritos do nosso App*/
     await AsyncStorage.removeItem("@favoritos");
+
+    /* Atualizar o render do componente (removendo da tela os favoritos)*/
     setListaFavoritos([]);
+    Alert.alert("Favoritos", "Favoritos excluídos!");
   };
 
   return (
     <SafeAreaView style={estilos.safeContainer}>
       <View style={estilos.container}>
-        <Text>Quantidade: {listaFavoritos.length}</Text>
-        <Button title="Excluir favoritos" onPress={excluirFavoritos} />
+        <Text>Quantidade: {listaFavoritos.length} </Text>
+        <Pressable style={estilos.botaoExcluirTudo} onPress={excluirFavoritos}>
+          <Text style={estilos.textoExcluir}>
+            <Ionicons name="trash-outline" size={10} /> excluir Favoritos
+          </Text>
+        </Pressable>
         <View>
           {listaFavoritos.map((filmeFavorito) => {
             return (
               <Pressable key={filmeFavorito.id} style={estilos.itemFilme}>
                 <Text>{filmeFavorito.title}</Text>
                 <Pressable style={estilos.botaoExcluir}>
-                  <Ionicons name="trash" size={24} color="white" />
+                  <Ionicons name="trash" size={24} />
                 </Pressable>
               </Pressable>
             );
