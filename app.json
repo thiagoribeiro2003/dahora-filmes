@@ -4,15 +4,16 @@
     "slug": "dahora-filmes",
     "version": "1.0.0",
     "orientation": "default",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/dahora.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/splash-dahora.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#ffe1ab"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/17289621-63ef-49c4-b9dc-ff8a8baa1f37"
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
@@ -20,12 +21,19 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/adaptive-dahora.png",
         "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.thiagoribeiro2022.dahorafilmes"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "17289621-63ef-49c4-b9dc-ff8a8baa1f37"
       }
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
+    "owner": "thiagoribeiro2022",
+    "runtimeVersion": {
+      "policy": "appVersion"
     }
   }
 }
