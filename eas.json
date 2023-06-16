@@ -5,6 +5,7 @@
   "build": {
     "development": {
       "developmentClient": true,
+
       "distribution": "internal",
       "ios": {
         "resourceClass": "m1-medium"
@@ -18,6 +19,7 @@
       },
       "channel": "preview",
       "developmentClient": true,
+      
       "android": {
         "buildType": "apk",
         "gradleCommand": ":app:assembleRelease"
